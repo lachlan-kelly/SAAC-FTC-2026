@@ -14,7 +14,6 @@ public class colorTest2 extends LinearOpMode {
     @Override
     public void runOpMode() {
         colorSensor = hardwareMap.get(NormalizedColorSensor.class, "colorS");
-
         float[] hsvValues = new float[3];
 
         telemetry.addData("Status", "Initialized");
@@ -24,14 +23,12 @@ public class colorTest2 extends LinearOpMode {
 
         while (opModeIsActive()) {
             NormalizedRGBA colors = colorSensor.getNormalizedColors();
-
             Color.colorToHSV(colors.toColor(), hsvValues);
             float hue = hsvValues[0];
-
             String colorName = "Unknown";
 
             if (colors.alpha > 0.01) {
-                if (hue >= 0 && hue < 20 || hue >= 330) {
+                if (hue >= 1 && hue < 20 || hue >= 330) {
                     colorName = "Red";
                 } else if (hue >= 30 && hue < 65) {
                     colorName = "Orange";
@@ -41,6 +38,8 @@ public class colorTest2 extends LinearOpMode {
                     colorName = "Green";
                 } else if (hue >= 165 && hue < 260) {
                     colorName = "Blue";
+                } else if (hue >= 0 && hue < 1) {
+                    colorName = "Black";
                 }
             } else {
                 colorName = "No object";
@@ -50,7 +49,7 @@ public class colorTest2 extends LinearOpMode {
             telemetry.addData("Hue", hue);
             telemetry.update();
 
-        sleep(50);
+            sleep(50);
         }
     }
 }
