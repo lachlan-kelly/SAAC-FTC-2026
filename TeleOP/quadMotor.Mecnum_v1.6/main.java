@@ -10,7 +10,7 @@ import com.qualcomm.robotcore.hardware.NormalizedRGBA;
 import com.qualcomm.robotcore.hardware.SwitchableLight;
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 
-@TeleOp(name = "mecnumFullTest (Blocks to Java)")
+@TeleOp(name = "mecnumFullTest (use this code please)")
 public class mecnumFullTest extends LinearOpMode {
 
   private DcMotor frontLeft;
@@ -24,12 +24,11 @@ public class mecnumFullTest extends LinearOpMode {
   private boolean prevUpPressed = false;
   private boolean prevDownPressed = false;
 
-  private double intakeSpeed = 0.5; // starting speed, adjustable via dpad left/right
+  private double intakeSpeed = 0.5;
   private static final double SPEED_STEP = 0.1;
   private boolean prevLeftPressed = false;
   private boolean prevRightPressed = false;
 
-  // --- Color sensor fields ---
   private NormalizedColorSensor colorSensor;
   private final float[] hsvValues = new float[3];
   private float colorGain = 30;
@@ -45,7 +44,6 @@ public class mecnumFullTest extends LinearOpMode {
 
     MOTOR_SETTINGS();
 
-    // Turn the color sensor's light on if it supports one, so readings are consistent.
     if (colorSensor instanceof SwitchableLight) {
       ((SwitchableLight) colorSensor).enableLight(true);
     }
@@ -112,7 +110,6 @@ public class mecnumFullTest extends LinearOpMode {
     prevUpPressed = upPressed;
     prevDownPressed = downPressed;
 
-    // only adjust speed while a direction is actually active
     if (intakeState != IntakeState.OFF) {
       if (leftPressed && !prevLeftPressed) {
         intakeSpeed = Math.min(1.0, intakeSpeed + SPEED_STEP);
@@ -137,11 +134,6 @@ public class mecnumFullTest extends LinearOpMode {
     }
   }
 
-  /*
-   * Reads the color sensor once per loop and pushes RGB/HSV/distance/best-guess-color
-   * telemetry. Gain is adjustable via gamepad2 A/B since gamepad1 is fully committed
-   * to drive and intake control.
-   */
   private void COLOR_SENSOR_RUN() {
     if (gamepad2.a) {
       colorGain += 0.005f;
@@ -169,13 +161,6 @@ public class mecnumFullTest extends LinearOpMode {
     }
   }
 
-  /*
-   * Turns an HSV reading into a rough, human-readable color name. Saturation/value
-   * cutoffs catch "not really a color" readings (too dark, or too washed-out/bright
-   * to have a clear hue) before falling through to hue-based buckets. Tune the hue
-   * boundaries against your own calibration readings if a specific object lands in
-   * the wrong bucket.
-   */
   private String getColorName(float hue, float saturation, float value) {
     if (value < 0.40) {
       return "Black";
