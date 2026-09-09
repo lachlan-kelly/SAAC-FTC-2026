@@ -89,7 +89,7 @@ public class SensorColor extends LinearOpMode {
         float saturation = hsv[1];
         float value = hsv[2];
 
-        telemetry.addData("Hue / Sat / Val", "%.1f / %.3f / %.3f", hue, saturation, value);
+        telemetry.addData("Raw RGB", "%.3f, %.3f, %.3f", colors.red, colors.green, colors.blue);
 
         if (colors.red < RED_MIN_VALUE) return false;
 
