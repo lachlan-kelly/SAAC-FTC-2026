@@ -1,6 +1,4 @@
-Latest Versions Working:
+update log:
 
-| OpMode | Version |
-|---|---|
-| TeleOp | quadMotor.Mecnum_v1.6 |
-| Auto | quadMotor.Mecnum.Auto_v1.5 |
+new color sensing works see v1.5.1
+new manual program system see v1.0

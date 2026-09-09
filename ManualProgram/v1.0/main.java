@@ -39,15 +39,20 @@ public class Program extends LinearOpMode {
 
         if (opModeIsActive()) {
             // Put your program in here
-            // Example should drive foward 1 spot then strafe right 1 spot, and rotate 90 degrees right
-            drive_foward(0.3);
+            // Example should drive in a circle
+            drive_foward(0.7);
+            sleep(2000)
+            drive_left(0.7);
             sleep(2000);
-            drive_left(1);
+            drive_back(0.7);
             sleep(2000);
-            stop_all();
+            drive_right(0.7);
+            sleep(2000);
+            stop_all(); // do not remove this line
         }
     }
 
+    // stop function
     private void stop_all() {
         frontLeft.setPower(0);
         frontRight.setPower(0);
@@ -55,6 +60,7 @@ public class Program extends LinearOpMode {
         backRight.setPower(0);
     }
 
+    // foward function
     private void drive_foward(double power) {
         frontLeft.setPower(power);
         frontRight.setPower(power);
@@ -62,6 +68,15 @@ public class Program extends LinearOpMode {
         backRight.setPower(power);
     }
 
+    // back function
+    private void drive_back(double power) {
+        frontLeft.setPower(-power);
+        frontRight.setPower(-power);
+        backLeft.setPower(-power);
+        backRight.setPower(-power);
+    }
+
+    // strafe right function
     private void drive_right(double power) {
         frontLeft.setPower(power);
         frontRight.setPower(-power);
@@ -69,6 +84,7 @@ public class Program extends LinearOpMode {
         backRight.setPower(power);
     }
 
+    // strafe left function
     private void drive_left(double power) {
         frontLeft.setPower(-power);
         frontRight.setPower(power);
