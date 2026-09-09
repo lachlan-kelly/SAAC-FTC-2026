@@ -97,4 +97,3 @@ public class SensorColor extends LinearOpMode {
                 && colors.red > colors.blue * RED_DOMINANCE_RATIO;
     }
 }
->>>>>>> ea805e9 (new auto code in testing)
