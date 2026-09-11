@@ -39,7 +39,7 @@ public class Program extends LinearOpMode {
 
         if (opModeIsActive()) {
             // Put your program in here
-            // Example should drive in a circle
+            // Example should drive in a square
             drive_foward(0.7);
             sleep(2000)
             drive_left(0.7);
