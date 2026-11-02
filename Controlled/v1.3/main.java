@@ -1,40 +1,30 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import android.util.Log;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
-@TeleOp(name = "mecnumFullTest (Blocks to Java)")
-public class mecnumFullTest extends LinearOpMode {
+@TeleOp(name = "mecnumDrive")
+public class mecnumDrive extends LinearOpMode {
 
   private DcMotor frontLeft;
   private DcMotor frontRight;
   private DcMotor backLeft;
   private DcMotor backRight;
-  private DcMotor activeIntake;
 
-  private boolean activeIntakeToggle = false;
-  private boolean prevIntakePressed = false;
-  private boolean 4wheelDrive = true;
-
-  /**
-   * This function is executed when this Op Mode is selected.
-   */
   @Override
   public void runOpMode() {
     frontLeft = hardwareMap.get(DcMotor.class, "frontLeft");
     frontRight = hardwareMap.get(DcMotor.class, "frontRight");
     backLeft = hardwareMap.get(DcMotor.class, "backLeft");
     backRight = hardwareMap.get(DcMotor.class, "backRight");
-    activeIntake = hardwareMap.get(DcMotor.class, "activeIntake");
 
     MOTOR_SETTINGS();
     waitForStart();
     if (opModeIsActive()) {
       while (opModeIsActive()) {
-        TOGGLE_4WHEELDRIVE();
         MECANUM_DRIVE();
-        INTAKE_MOTOR_RUN();
       }
     }
   }
@@ -48,15 +38,6 @@ public class mecnumFullTest extends LinearOpMode {
     backLeft.setDirection(DcMotor.Direction.REVERSE);
     backRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
     backRight.setDirection(DcMotor.Direction.REVERSE);
-    activeIntake.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-    activeIntake.setDirection(DcMotor.Direction.REVERSE);
-  }
-
-  private void TOGGLE_4WHEELDRIVE() {
-    float toggle_drive = gamepad1.right_trigger;
-
-    if (toggle_drive >= 0.1 && 4wheelDrive = true) {
-        4wheelDrive = !4wheelDrive;
   }
 
   private void MECANUM_DRIVE() {
@@ -81,15 +62,4 @@ public class mecnumFullTest extends LinearOpMode {
     backLeft.setPower(leftBackPower);
     backRight.setPower(rightBackPower);
   }
-
-  private void INTAKE_MOTOR_RUN() {
-    float intake = gamepad1.left_trigger;
-    boolean intakePressed = intake > 0.1;
-
-    if (intakePressed && !prevIntakePressed) {
-      activeIntakeToggle = !activeIntakeToggle;
-    }
-    prevIntakePressed = intakePressed;
-
-    activeIntake.setPower(activeIntakeToggle ? 1.0 : 0);
 }
