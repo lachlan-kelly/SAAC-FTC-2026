@@ -51,7 +51,7 @@ public class mecnumFullTest extends LinearOpMode {
         launcherWheel.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         intakeMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
-        armServo.setPosition(0.5);
+        armServo.setPosition(0.0);
 
         waitForStart();
 
@@ -78,7 +78,7 @@ public class mecnumFullTest extends LinearOpMode {
             if (gamepad1.dpad_up) {
                 armServo.setPosition(1.0);
             } else if (gamepad1.dpad_down) {
-                armServo.setPosition(0.5);
+                armServo.setPosition(0.0);
             }
 
             launcherWheel.setPower(gamepad1.right_trigger > triggerThreshold ? launcherPower : 0.0);
