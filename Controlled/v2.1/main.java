@@ -21,7 +21,7 @@ public class mecnumFullTest extends LinearOpMode {
     private boolean leftTriggerWasPressed = false;
 
     private static final double triggerThreshold = 0.5;
-    private static final double launcherPower = 1.0;
+    private static final double launcherPower = -1.0;
     private static final double intakePower = 1.0;
 
     @Override
@@ -40,7 +40,7 @@ public class mecnumFullTest extends LinearOpMode {
         frontRight.setDirection(DcMotor.Direction.FORWARD);
         backRight.setDirection(DcMotor.Direction.FORWARD);
 
-        launcherWheel.setDirection(DcMotor.Direction.FORWARD);
+        launcherWheel.setDirection(DcMotor.Direction.REVERSE);
         intakeMotor.setDirection(DcMotor.Direction.FORWARD);
 
         frontLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
@@ -76,7 +76,7 @@ public class mecnumFullTest extends LinearOpMode {
             backRight.setPower(backRightPower / maxPower);
 
             if (gamepad1.dpad_up) {
-                armServo.setPosition(1.0);
+                armServo.setPosition(0.5);
             } else if (gamepad1.dpad_down) {
                 armServo.setPosition(0.0);
             }
@@ -93,3 +93,4 @@ public class mecnumFullTest extends LinearOpMode {
         }
     }
 }
+
