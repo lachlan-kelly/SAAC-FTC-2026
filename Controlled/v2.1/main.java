@@ -16,6 +16,7 @@ public class mecnumFullTest extends LinearOpMode {
     private Servo armServo;
     private DcMotor launcherWheel;
     private DcMotor intakeMotor;
+    private CRServo grabber;
 
     private boolean intakeOn = false;
     private boolean leftTriggerWasPressed = false;
@@ -34,6 +35,7 @@ public class mecnumFullTest extends LinearOpMode {
         armServo = hardwareMap.get(Servo.class, "armServo");
         launcherWheel = hardwareMap.get(DcMotor.class, "launcherWheel");
         intakeMotor = hardwareMap.get(DcMotor.class, "intakeMotor");
+        grabber = hardwareMap.get(CRServo.class, "grabber");
 
         frontLeft.setDirection(DcMotor.Direction.FORWARD);
         backLeft.setDirection(DcMotor.Direction.FORWARD);
@@ -42,7 +44,7 @@ public class mecnumFullTest extends LinearOpMode {
 
         launcherWheel.setDirection(DcMotor.Direction.REVERSE);
         intakeMotor.setDirection(DcMotor.Direction.FORWARD);
-
+        
         frontLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         backLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         frontRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
@@ -82,6 +84,9 @@ public class mecnumFullTest extends LinearOpMode {
             }
 
             launcherWheel.setPower(gamepad1.right_trigger > triggerThreshold ? launcherPower : 0.0);
+            if (launcherPower > 0.0) {
+                grabber.setPower(1.0);
+            } else grabber.setPower(0.0)
 
             boolean leftTriggerPressed = gamepad1.left_trigger > triggerThreshold;
             if (leftTriggerPressed && !leftTriggerWasPressed) {
