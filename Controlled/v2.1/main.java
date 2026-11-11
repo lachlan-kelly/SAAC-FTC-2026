@@ -84,10 +84,9 @@ public class mecnumFullTest extends LinearOpMode {
                 armServo.setPosition(0.0);
             }
 
-            launcherWheel.setPower(gamepad1.right_trigger > triggerThreshold ? launcherPower : 0.0);
-            if (launcherPower > 0.0) {
-                grabber.setPower(1.0);
-            } else grabber.setPower(0.0);
+            boolean launcherActive = gamepad1.right_trigger > triggerThreshold;
+            launcherWheel.setPower(launcherActive ? launcherPower : 0.0);
+            grabber.setPower(launcherActive ? 1.0 : 0.0);
 
             boolean leftTriggerPressed = gamepad1.left_trigger > triggerThreshold;
             if (leftTriggerPressed && !leftTriggerWasPressed) {
